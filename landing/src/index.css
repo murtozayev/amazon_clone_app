@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@utility flex-center {
+  @apply flex justify-center items-center;
+}
+
+@utility navbar {
+  @apply flex items-center justify-between
+}
+
+.animate {
+  box-shadow: 0 5px 1px 1px darkgreen;
+}
+
+.animate-blue {
+  box-shadow: 0 5px 1px 1px darkblue;
+}
+
+.animate-red {
+  box-shadow: 0 5px 1px 1px red;
+}
+
+.animate:active,
+.animate-blue:active,
+.animate-red:active {
+  box-shadow: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+body {
+  background-color: black;
+}
+
+.gradient {
+  background-image: linear-gradient(to top, blue, aqua);
+}
