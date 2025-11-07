@@ -8,6 +8,6 @@ const productRoute = e.Router()
 
 productRoute.post("/create", authMiddleware, checkRole, checkBan, createProduct)
 productRoute.put("/update/:id", authMiddleware, checkRole, checkBan, updateProduct)
-productRoute.delete("/delete/:id", authMiddleware, checkOwner, checkBan, deleteProduct)
+productRoute.post("/delete-many", authMiddleware, checkOwner, checkBan, deleteProduct)
 
 export default productRoute

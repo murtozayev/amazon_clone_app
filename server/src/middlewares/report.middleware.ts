@@ -16,6 +16,8 @@ export async function checkSpamOrBan(req: typeof request, res: typeof response, 
             return error(res, `Siz spamdasiz yoki bandasiz chiqishinggizni kuting chiqish vaqti: ${user?.isDisActiveData}`)
         }
 
+        next()
+
     } catch (err) {
         return error(res, (err as Error).message, 500)
     }
@@ -34,6 +36,8 @@ export async function checkBan(req: typeof request, res: typeof response, next: 
         if (user.status === "ban") {
             return error(res, `Bandasiz chiqishinggizni kuting chiqish vaqti: ${user?.isDisActiveData}`)
         }
+
+        next()
 
     } catch (err) {
         return error(res, (err as Error).message, 500)

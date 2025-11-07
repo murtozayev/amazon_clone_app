@@ -23,10 +23,6 @@ export async function allTasks(req: typeof request, res: typeof response) {
     return res.status(200).json(await TASK.find({}))
 }
 
-export async function oneTask(req: typeof request, res: typeof response) {
-    return res.status(200).json(await TASK.findById(req.params.id))
-}
-
 export async function updateTask(req: typeof request, res: typeof response) {
     return res.status(200).json({ message: "Vazifa Yangilandi", task: await TASK.findByIdAndUpdate(req.params.id, { ...req.body }, { new: true }) })
 }

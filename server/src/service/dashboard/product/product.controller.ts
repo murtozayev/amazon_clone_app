@@ -85,16 +85,25 @@ export async function updateProduct(req: typeof request, res: typeof response) {
 
 export async function deleteProduct(req: typeof request, res: typeof response) {
     try {
-        const product = await PRODUCT.findById(req.params.id)
 
-        if (!product) {
-            return error(res, "Mahsulot topilmadi", 404)
+        const { ids } = req.body
+        if (!ids || !Array.isArray(ids) || ids.length === 0) {
+            return res.status(400).json({ message: "O'chirish uchun IDlar topilmadi" })
         }
 
-        await PRODUCT.deleteOne({ _id: product._id })
-        await CATEGORY.deleteOne({ productId: product._id })
+        const products = await PRODUCT.find({ _id: { $in: ids } })
 
-        return res.status(200).json({ message: "Mahsulot o'chirib tashlandi" })
+        if (products.length === 0) {
+            return res.status(404).json({ message: "Mahsulot topilmadi" })
+        }
+
+        await PRODUCT.deleteMany({ _id: { $in: ids } })
+        await CATEGORY.deleteMany({ productId: { $in: ids } })
+
+        return res.status(200).json({
+            message: "Mahsulotlar o‘chirildi ✅",
+            deletedCount: ids.length,
+        })
 
     } catch (err) {
         return error(res, (err as Error).message, 500)
