@@ -43,7 +43,8 @@ export default function Login() {
             setIsCompare(true)
         },
         onError(err) {
-            toast.error(err.message)
+            //@ts-ignore
+            toast.error(err.response.data.message)
         }
     })
 
@@ -59,7 +60,8 @@ export default function Login() {
             window.location.reload()
         },
         onError(err) {
-            toast.error(err.message)
+            //@ts-ignore
+            toast.error(err.response.data.message)
         }
     })
 

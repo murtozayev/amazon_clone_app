@@ -19,10 +19,10 @@ import icon from "@/assets/images/amazon.png"
 
 const items = [
     { title: "Xodimlar", url: "/employee", icon: <Users className="w-5 h-5" /> },
-    { title: "Vazifalar", url: "#", icon: <ClipboardList className="w-5 h-5" /> },
+    { title: "Vazifalar", url: "/tasks", icon: <ClipboardList className="w-5 h-5" /> },
     { title: "Mahsulotlar", url: "/products", icon: <Kanban className="w-5 h-5" /> },
     { title: "Qo'llab quvvatlash", url: "#", icon: <MessageCircleMore className="w-5 h-5" /> },
-    { title: "Profil", url: "#", icon: <User className="w-5 h-5" /> },
+    { title: "Profil", url: "/profile", icon: <User className="w-5 h-5" /> },
 ]
 
 export default function SidebarUI() {

@@ -1,18 +1,12 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @import "tw-animate-css";
 
-.banner {
-  background-image: url(./assets/images/banner-shop.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-
-.shadow-border {
-  box-shadow: inset 0 0 20px 1px blue;
-}
 
 @custom-variant dark (&:is(.dark *));
+
+button {
+  cursor: pointer;
+}
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);

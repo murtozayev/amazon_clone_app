@@ -12,10 +12,18 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { EllipsisVertical } from "../animate-ui/icons/ellipsis-vertical"
+import SpamDialog from "./SpamDialog"
+import BanDialog from "./BanDialog"
+import RoleChange from "./Role"
 
 type Checked = DropdownMenuCheckboxItemProps["checked"]
 
-export function DropdownMenuCheckboxes() {
+interface Props {
+    onDelete: React.MouseEventHandler<HTMLDivElement>
+    data: object
+}
+
+export function DropdownMenuCheckboxes({ onDelete, data }: Props) {
     const [showStatusBar, setShowStatusBar] = React.useState<Checked>(true)
     const [showActivityBar, setShowActivityBar] = React.useState<Checked>(false)
     const [showPanel, setShowPanel] = React.useState<Checked>(false)
@@ -29,32 +37,47 @@ export function DropdownMenuCheckboxes() {
                 <DropdownMenuLabel></DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuCheckboxItem
-                className="cursor-target"
+                    className="cursor-target"
                     checked={showStatusBar}
                     onCheckedChange={setShowStatusBar}
                 >
                     Yozish
                 </DropdownMenuCheckboxItem>
                 <DropdownMenuCheckboxItem
-                className="cursor-target"
+                    className="cursor-target"
+                    checked={showStatusBar}
+                    onCheckedChange={setShowStatusBar}
+                    onSelect={e => e.preventDefault()}
+                >
+                    <RoleChange data={data as { _id: string }}>
+                        Rolni almashtirish
+                    </RoleChange>
+                </DropdownMenuCheckboxItem>
+                <DropdownMenuCheckboxItem
+                    className="cursor-target"
                     checked={showActivityBar}
                     onCheckedChange={setShowActivityBar}
+                    onClick={onDelete}
                 >
                     O'chirish
                 </DropdownMenuCheckboxItem>
                 <DropdownMenuCheckboxItem
-                className="cursor-target"
+                    className="cursor-target"
                     checked={showPanel}
                     onCheckedChange={setShowPanel}
+                    onSelect={e => e.preventDefault()}
                 >
-                    Spam berish
+                    <SpamDialog data={data as { _id: string }}>Spam berish</SpamDialog>
                 </DropdownMenuCheckboxItem>
                 <DropdownMenuCheckboxItem
-                className="cursor-target"
+                    className="cursor-target"
                     checked={showPanel}
                     onCheckedChange={setShowPanel}
+                    onSelect={e => e.preventDefault()}
                 >
-                    Ban berish
+                    <BanDialog data={data as { _id: string }}>
+                        Ban berish
+                    </BanDialog>
                 </DropdownMenuCheckboxItem>
             </DropdownMenuContent>
         </DropdownMenu>

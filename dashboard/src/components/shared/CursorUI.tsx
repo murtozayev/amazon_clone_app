@@ -4,6 +4,7 @@ import {
     CursorProvider,
     type CursorFollowProps,
 } from '@/components/animate-ui/components/animate/cursor';
+import useSettings from '@/store';
 import { ReactNode } from 'react';
 
 interface CursorDemoProps {
@@ -27,6 +28,9 @@ export const CursorDemo = ({
     alignOffset = 5,
     children
 }: CursorDemoProps) => {
+
+    const { data } = useSettings()
+
     return (
         <div
             key={String(global)}
@@ -42,7 +46,8 @@ export const CursorDemo = ({
                         alignOffset={alignOffset}
                         className='font-semibold text-fuchsia-700 bg-transparent'
                     >
-                        Owner
+                        {/* @ts-ignore */}
+                        {data?.role ?? "User"}
                     </CursorFollow>
                 )}
                 {children}
